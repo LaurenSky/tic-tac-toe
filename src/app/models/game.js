@@ -27,6 +27,7 @@ const Game = Backbone.Model.extend({
 
   playTurn: function(row, column) {
     if(this.winner !== null) {
+      this.trigger('gameover', this);
       console.log("Game is Over " + this.winner.name + " won.");
       return "Game is Over " + this.winner.name + " won.";
     } else {
@@ -34,6 +35,7 @@ const Game = Backbone.Model.extend({
 
       if (this.valid(row, column)) {
         this.board.gameBoard[row][column] = player.marker;
+
         console.log('triggering change event');
         this.board.trigger('change', this.board, {});
 
@@ -49,16 +51,18 @@ const Game = Backbone.Model.extend({
           if(this.board.hasWon() === true) {
             console.log(player + " you're the Winner!!!");
             this.winner = player;
+            this.trigger('winner', this);
             return player.name;
           } else if(this.board.hasWon() === "tie") {
+            this.trigger('catsgame', this, "cats game");
             console.log("Cat's Game, it's a tie.");
             // return "Cat's Game.";
           }
         }
       } else {
+        this.trigger('invalid', this, "Position is already Taken", {});
         console.log("That position is already taken, go Again");
       }
-
 
       console.log(this.board.gameBoard[0]);
       console.log(this.board.gameBoard[1]);

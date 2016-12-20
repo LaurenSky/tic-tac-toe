@@ -21,6 +21,11 @@ const GameView = Backbone.View.extend({
     });
 
     this.listenTo(gameBoardView, 'selectSpace', this.playTurn);
+    this.listenTo(this.model, 'invalid', this.spaceTaken);
+    this.listenTo(this.model, 'gameover', this.gameOver);
+    this.listenTo(this.model, 'winner', this.stateWinner);
+    this.listenTo(this.model, 'catsgame', this.stateCatsGame);
+
 
     gameBoardView.render();
     playerView.render();
@@ -49,6 +54,26 @@ const GameView = Backbone.View.extend({
     console.log(value);
     this.model.playTurn(locationClicked[0], locationClicked[1]);
 
+  },
+
+  spaceTaken: function() {
+    console.log("in spaceTaken");
+    alert("That space is taken already, Go Again.");
+  },
+
+  gameOver: function() {
+    console.log("in gameOver");
+    alert("The Game's already over");
+  },
+
+  stateWinner: function () {
+    console.log("in winner");
+    alert("There's a winner ");
+  },
+
+  stateCatsGame: function () {
+    console.log("in winner");
+    alert("It's a Cat's Game :(");
   }
 
 });
