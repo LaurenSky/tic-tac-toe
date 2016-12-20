@@ -2,14 +2,19 @@ import Backbone from 'backbone';
 import $ from 'jquery';
 
 import Game from 'app/models/game';
+import GameBoard from 'app/models/game_board';
+
 import PlayerView from 'app/views/player_view';
 import GameBoardView from 'app/views/gameboard_view';
 
 const GameView = Backbone.View.extend({
 
   initialize: function() {
+    var gameBoard = new GameBoard();
+
     var gameBoardView = new GameBoardView({
-      el: '#gameboard-view'
+      el: '#gameboard-view',
+      model: gameBoard
     });
 
     var playerView = new PlayerView({
