@@ -4,6 +4,7 @@ import Backbone from 'backbone';
 const GameBoard = Backbone.Model.extend({
   initialize: function() {
     this.gameBoard = [[ null, null, null], [ null, null, null], [ null, null, null]];
+    // this.set('gameBoard', [[ null, null, null], [ null, null, null], [ null, null, null]]);
   },
 
   hasWon: function() {

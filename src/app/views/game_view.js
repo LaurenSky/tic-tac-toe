@@ -10,11 +10,10 @@ import GameBoardView from 'app/views/gameboard_view';
 const GameView = Backbone.View.extend({
 
   initialize: function() {
-    var gameBoard = new GameBoard();
 
     var gameBoardView = new GameBoardView({
       el: '#gameboard-view',
-      model: gameBoard
+      model: this.model.board
     });
 
     var playerView = new PlayerView({
@@ -38,18 +37,18 @@ const GameView = Backbone.View.extend({
 
   startGame: function() {
     console.log("Starting a game");
+
   },
 
   playTurn: function(event) {
+    console.log(event);
     console.log(event.id);
     var locationClicked = event.id;
+    var value = $(event).html();
 
-    // this.model.playTurn();
-    // var player = ;
-    // var marker = "X";
-    //
-    //
-    // event.currentTarget.append(marker);
+    console.log(value);
+    this.model.playTurn(locationClicked[0], locationClicked[1]);
+
   }
 
 });

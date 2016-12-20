@@ -1,12 +1,12 @@
 import Backbone from 'backbone';
 import $ from 'jquery';
 
-// import Game from 'app/models/game';
 import GameBoard from 'app/models/game_board';
 
 var GameBoardView = Backbone.View.extend({
 
   initialize: function() {
+    this.listenTo(this.model, 'change', this.render);
 
   },
 
@@ -24,20 +24,30 @@ var GameBoardView = Backbone.View.extend({
   },
 
   render: function() {
+    console.log('in gameBoardView.render');
     var array = this.model.gameBoard;
-    console.log(array[0]);
-    console.log(array[0][0]);
-      $('#top-left').append(array[0][0]);
-      $('#top-middle').append(array[0][1]);
-      $('#top-right').append(array[0][2]);
+    console.log(array);
 
-      $('#middle-left').append(array[1][0]);
-      $('#middle-middle').append(array[1][1]);
-      $('#middle-right').append(array[1][2]);
+    $('#00').empty();
+    $('#00').append(array[0][0]);
+    $('#01').empty();
+    $('#01').append(array[0][1]);
+    $('#02').empty();
+    $('#02').append(array[0][2]);
 
-      $('#bottom-left').append(array[2][0]);
-      $('#bottom-middle').append(array[2][1]);
-      $('#bottom-right').append(array[2][2]);
+    $('#10').empty();
+    $('#10').append(array[1][0]);
+    $('#11').empty();
+    $('#11').append(array[1][1]);
+    $('#12').empty();
+    $('#12').append(array[1][2]);
+
+    $('#20').empty();
+    $('#20').append(array[2][0]);
+    $('#21').empty();
+    $('#21').append(array[2][1]);
+    $('#22').empty();
+    $('#22').append(array[2][2]);
 
     return this;
   }

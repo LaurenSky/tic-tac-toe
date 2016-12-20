@@ -34,6 +34,8 @@ const Game = Backbone.Model.extend({
 
       if (this.valid(row, column)) {
         this.board.gameBoard[row][column] = player.marker;
+        console.log('triggering change event');
+        this.board.trigger('change', this.board, {});
 
         if (player == this.get('player1')) {
           this.gameCounter = false;
@@ -56,7 +58,11 @@ const Game = Backbone.Model.extend({
       } else {
         console.log("That position is already taken, go Again");
       }
-      console.log(this.board.gameBoard);
+
+
+      console.log(this.board.gameBoard[0]);
+      console.log(this.board.gameBoard[1]);
+      console.log(this.board.gameBoard[2]);
       console.log("who's turn: " + this.gameCounter);
       console.log("round number: " + this.turnCounter);
     }
