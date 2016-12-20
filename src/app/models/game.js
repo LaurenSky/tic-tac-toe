@@ -16,19 +16,19 @@ const Game = Backbone.Model.extend({
       turnId: false,
       name: "player2"
     },
-    gameCounter: true,
-    turnCounter: 0,
-    winner: null
   },
 
   initialize: function() {
     this.board = new GameBoard();
+    this.gameCounter = true;
+    this.turnCounter = 0;
+    this.winner = null;
   },
 
   playTurn: function(row, column) {
-    if(this.get('winner') !== null) {
-      console.log("Game is Over " + this.get('winner').name + " won.");
-      return "Game is Over " + this.get('winner').name + " won.";
+    if(this.winner !== null) {
+      console.log("Game is Over " + this.winner.name + " won.");
+      return "Game is Over " + this.winner.name + " won.";
     } else {
       var player = this.whichPlayer();
 
@@ -36,17 +36,17 @@ const Game = Backbone.Model.extend({
         this.board.gameBoard[row][column] = player.marker;
 
         if (player == this.get('player1')) {
-          this.set('gameCounter', false);
-          this.set('turnCounter', this.get('turnCounter') + 1);
+          this.gameCounter = false;
+          this.turnCounter++;
         } else {
-          this.set('gameCounter', true);
-          this.set('turnCounter', this.get('turnCounter') + 1);
+          this.gameCounter = true;
+          this.turnCounter++ ;
         }
 
-        if(this.get('turnCounter') >= 5) {
+        if(this.turnCounter >= 5) {
           if(this.board.hasWon() === true) {
             console.log(player + " you're the Winner!!!");
-            this.set('winner', player);
+            this.winner = player;
             return player.name;
           } else if(this.board.hasWon() === "tie") {
             console.log("Cat's Game, it's a tie.");
@@ -57,13 +57,13 @@ const Game = Backbone.Model.extend({
         console.log("That position is already taken, go Again");
       }
       console.log(this.board.gameBoard);
-      console.log("who's turn: " + this.get('gameCounter'));
-      console.log("round number: " + this.get('turnCounter'));
+      console.log("who's turn: " + this.gameCounter);
+      console.log("round number: " + this.turnCounter);
     }
   },
 
   whichPlayer: function() {
-    if (this.get('gameCounter') === this.get('player1').turnId) {
+    if (this.gameCounter === this.get('player1').turnId) {
       return this.get('player1');
     } else {
       return this.get('player2');

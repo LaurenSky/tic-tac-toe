@@ -23,10 +23,21 @@ var GameBoardView = Backbone.View.extend({
   },
 
   render: function() {
+    var array = this.model.gameBoard;
+    console.log('array');
+    console.log(array);
+      $('#top-left').append(array[0][0]);
+      $('#top-middle').append(array[0][0]);
+      $('#top-right').append(array[0][0]);
 
-    return this;
+      $('#middle-left').append(array[0][0]);
+      $('#middle-middle').append(array[0][0]);
+      $('#middle-right').append(array[0][0]);
+
+      $('#bottom-left').append(array[0][0]);
+      $('#bottom-middle').append(array[0][0]);
+      $('#bottom-right').append(array[0][0]);
   }
-
 });
 
 export default GameBoardView;

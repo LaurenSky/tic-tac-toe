@@ -23,7 +23,7 @@ describe('Game', function() {
 
   describe('whichPlayer', function() {
     var testGame2 = new Game();
-    testGame2.set('gameCounter', false);
+    testGame2.gameCounter = false;
 
     it('should return Player1 for a new game because counter equals true', function(){
       expect(testGame.whichPlayer()).toEqual(testGame.get('player1'));
@@ -56,52 +56,54 @@ describe('Game', function() {
 
     it('should add a player1 marker (X) if the space is open', function() {
       expect(testGame4.board.gameBoard[0][0]).toEqual(null);
-      expect(testGame4.get('gameCounter')).toEqual(true);
-      expect(testGame4.get('turnCounter')).toEqual(0);
+      expect(testGame4.gameCounter).toEqual(true);
+      expect(testGame4.turnCounter).toEqual(0);
 
 
       testGame4.playTurn(0,0);
-      expect(testGame4.get('gameCounter')).toEqual(false);
-      expect(testGame4.get('turnCounter')).toEqual(1);
+      expect(testGame4.gameCounter).toEqual(false);
+      expect(testGame4.turnCounter).toEqual(1);
       expect(testGame4.board.gameBoard[0][0]).toEqual('X');
     });
 
     it('should not add a players marker if the space is taken', function() {
       expect(testGame4.board.gameBoard[0][0]).toEqual('X');
-      expect(testGame4.get('gameCounter')).toEqual(false);
+      expect(testGame4.gameCounter).toEqual(false);
 
       testGame4.playTurn(0,0);
-      expect(testGame4.get('gameCounter')).toEqual(false);
-      expect(testGame4.get('turnCounter')).toEqual(1);
+      expect(testGame4.gameCounter).toEqual(false);
+      expect(testGame4.turnCounter).toEqual(1);
       expect(testGame4.board.gameBoard[0][0]).toEqual('X');
     });
 
     it('should add player2 marker (O) if the space is open', function() {
       expect(testGame4.board.gameBoard[2][2]).toEqual(null);
-      expect(testGame4.get('gameCounter')).toEqual(false);
-      // expect(testGame4.get('turnCounter')).toEqual(1);
-      console.log(">>>>>>>>>>>>>>>>" + testGame4.get('turnCounter'));
+      expect(testGame4.gameCounter).toEqual(false);
+      // expect(testGame4.turnCounter).toEqual(1);
+      console.log(">>>>>>>>>>>>>>>>" + testGame4.turnCounter);
 
       testGame4.playTurn(2,2);
-      console.log(">>>>>>>>>>>>>>>>" + testGame4.get('turnCounter'));
-      expect(testGame4.get('gameCounter')).toEqual(true);
-      expect(testGame4.get('turnCounter')).toEqual(2);
+      console.log(">>>>>>>>>>>>>>>>" + testGame4.turnCounter);
+      expect(testGame4.gameCounter).toEqual(true);
+      expect(testGame4.turnCounter).toEqual(2);
       expect(testGame4.board.gameBoard[2][2]).toEqual('O');
     });
 
     var testWinner = new Game();
-    testWinner.set('turnCounter', 4);
+    testWinner.turnCounter = 4;
     testWinner.board.gameBoard[0][0] = "X";
     testWinner.board.gameBoard[0][1] = "X";
 
     it('should return a winner if someone has won after their turn', function() {
-      console.log(testWinner.get('winner'));
-      expect(testWinner.playTurn(0,2)).toEqual(testWinner.get('player1').name);
-      console.log(testWinner.get('winner'));
+      // console.log("********" + testWinner.winner);
+      // console.log(testWinner.board.gameboard;
+      testWinner.playTurn(0,2);
+      expect(testWinner.winner).toEqual(testWinner.get('player1'));
+      // console.log("********" + testWinner.winner);
     });
 
     it('should return a Game Over if game is already won and you try to play a turn', function() {
-      expect(testWinner.playTurn(2,2)).toEqual("Game is Over " + testWinner.get('winner').name + " won.");
+      expect(testWinner.playTurn(2,2)).toEqual("Game is Over " + testWinner.winner.name + " won.");
     });
   });
 });
@@ -173,7 +175,7 @@ describe('GameBoard', function() {
     test3Nulls.playTurn(0,2);
     test3Nulls.playTurn(2,2);
     it('should return false if a player has not won but there have been 5 rounds and there are 3 nulls in a row', function() {
-      expect(test3Nulls.get('winner')).toEqual(null);
+      expect(test3Nulls.winner).toEqual(null);
       expect(test3Nulls.board.hasWon()).toEqual(false);
     });
 

@@ -39,7 +39,7 @@ const GameView = Backbone.View.extend({
     console.log(event.id);
     var locationClicked = event.id;
 
-    this.model.playTurn();
+    // this.model.playTurn();
     // var player = ;
     // var marker = "X";
     //
