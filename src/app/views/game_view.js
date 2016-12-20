@@ -3,20 +3,22 @@ import $ from 'jquery';
 
 import Game from 'app/models/game';
 import PlayerView from 'app/views/player_view';
-import SpaceBoardView from 'app/views/space_board_view';
+import GameBoardView from 'app/views/gameboard_view';
 
-var GameView = Backbone.View.extend({
+const GameView = Backbone.View.extend({
 
   initialize: function() {
-    var spaceBoardView = new SpaceBoardView({
-      el: '#space-board-view'
+    var gameBoardView = new GameBoardView({
+      el: '#gameboard-view'
     });
 
     var playerView = new PlayerView({
       el: '#player-view'
     });
 
-    spaceBoardView.render();
+    this.listenTo(gameBoardView, 'selectSpace', this.playTurn);
+
+    gameBoardView.render();
     playerView.render();
   },
 
@@ -31,6 +33,18 @@ var GameView = Backbone.View.extend({
 
   startGame: function() {
     console.log("Starting a game");
+  },
+
+  playTurn: function(event) {
+    console.log(event.id);
+    var locationClicked = event.id;
+
+    this.model.playTurn();
+    // var player = ;
+    // var marker = "X";
+    //
+    //
+    // event.currentTarget.append(marker);
   }
 
 });
