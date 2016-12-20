@@ -1,36 +1,36 @@
-import Game from 'game';
-import GameBoard from 'game';
+import Game from 'app/models/game';
+import GameBoard from 'app/models/game_board';
 
 describe('Game', function() {
   var testGame = new Game();
   var testBoard = new GameBoard();
 
-  it("should create a gameBoard with initialized", function() {
+  it("should create a gameBoard when initialized", function() {
     expect(testGame.board).toBeDefined();
-    expect(testGame.board).toEqual(testBoard.board);
+    // expect(testGame.board).toEqual(testBoard.board);
     expect(testGame.board.gameBoard).toEqual(jasmine.any(Array));
   });
 
   it('should initialize the correct Player for player1', function() {
-    expect(testGame.player1.marker).toEqual("X");
-    expect(testGame.player1.turnCounter).toEqual(true);
+    expect(testGame.get('player1').marker).toEqual("X");
+    expect(testGame.get('player1').turnId).toEqual(true);
   });
 
   it('should initialize the correct Player for player2', function() {
-    expect(testGame.player2.marker).toEqual("O");
-    expect(testGame.player2.turnCounter).toEqual(false);
+    expect(testGame.get('player2').marker).toEqual("O");
+    expect(testGame.get('player2').turnId).toEqual(false);
   });
 
   describe('whichPlayer', function() {
     var testGame2 = new Game();
-    testGame2.gameCounter = false;
+    testGame2.set('gameCounter', false);
 
     it('should return Player1 for a new game because counter equals true', function(){
-      expect(testGame.whichPlayer()).toEqual(testGame.player1);
+      expect(testGame.whichPlayer()).toEqual(testGame.get('player1'));
     });
 
     it('should return Player2 if gameCounter equals false', function(){
-      expect(testGame2.whichPlayer()).toEqual(testGame.player2);
+      expect(testGame2.whichPlayer()).toEqual(testGame.get('player2'));
     });
   });
 
@@ -56,49 +56,52 @@ describe('Game', function() {
 
     it('should add a player1 marker (X) if the space is open', function() {
       expect(testGame4.board.gameBoard[0][0]).toEqual(null);
-      expect(testGame4.gameCounter).toEqual(true);
-      expect(testGame4.turnCounter).toEqual(0);
+      expect(testGame4.get('gameCounter')).toEqual(true);
+      expect(testGame4.get('turnCounter')).toEqual(0);
 
 
       testGame4.playTurn(0,0);
-      expect(testGame4.gameCounter).toEqual(false);
-      expect(testGame4.turnCounter).toEqual(1);
+      expect(testGame4.get('gameCounter')).toEqual(false);
+      expect(testGame4.get('turnCounter')).toEqual(1);
       expect(testGame4.board.gameBoard[0][0]).toEqual('X');
     });
 
     it('should not add a players marker if the space is taken', function() {
       expect(testGame4.board.gameBoard[0][0]).toEqual('X');
-      expect(testGame4.gameCounter).toEqual(false);
+      expect(testGame4.get('gameCounter')).toEqual(false);
 
       testGame4.playTurn(0,0);
-      expect(testGame4.gameCounter).toEqual(false);
-      expect(testGame4.turnCounter).toEqual(1);
+      expect(testGame4.get('gameCounter')).toEqual(false);
+      expect(testGame4.get('turnCounter')).toEqual(1);
       expect(testGame4.board.gameBoard[0][0]).toEqual('X');
     });
 
     it('should add player2 marker (O) if the space is open', function() {
       expect(testGame4.board.gameBoard[2][2]).toEqual(null);
-      expect(testGame4.gameCounter).toEqual(false);
+      expect(testGame4.get('gameCounter')).toEqual(false);
+      // expect(testGame4.get('turnCounter')).toEqual(1);
+      console.log(">>>>>>>>>>>>>>>>" + testGame4.get('turnCounter'));
 
       testGame4.playTurn(2,2);
-      expect(testGame4.gameCounter).toEqual(true);
-      expect(testGame4.turnCounter).toEqual(2);
+      console.log(">>>>>>>>>>>>>>>>" + testGame4.get('turnCounter'));
+      expect(testGame4.get('gameCounter')).toEqual(true);
+      expect(testGame4.get('turnCounter')).toEqual(2);
       expect(testGame4.board.gameBoard[2][2]).toEqual('O');
     });
 
     var testWinner = new Game();
-    testWinner.turnCounter = 4;
+    testWinner.set('turnCounter', 4);
     testWinner.board.gameBoard[0][0] = "X";
     testWinner.board.gameBoard[0][1] = "X";
 
     it('should return a winner if someone has won after their turn', function() {
-      console.log(testWinner.winner);
-      expect(testWinner.playTurn(0,2)).toEqual(testWinner.player1.name);
-      console.log(testWinner.winner);
+      console.log(testWinner.get('winner'));
+      expect(testWinner.playTurn(0,2)).toEqual(testWinner.get('player1').name);
+      console.log(testWinner.get('winner'));
     });
 
     it('should return a Game Over if game is already won and you try to play a turn', function() {
-      expect(testWinner.playTurn(2,2)).toEqual("Game is Over " + testWinner.winner.name + " won.");
+      expect(testWinner.playTurn(2,2)).toEqual("Game is Over " + testWinner.get('winner').name + " won.");
     });
   });
 });
@@ -170,7 +173,7 @@ describe('GameBoard', function() {
     test3Nulls.playTurn(0,2);
     test3Nulls.playTurn(2,2);
     it('should return false if a player has not won but there have been 5 rounds and there are 3 nulls in a row', function() {
-      expect(test3Nulls.winner).toEqual(null);
+      expect(test3Nulls.get('winner')).toEqual(null);
       expect(test3Nulls.board.hasWon()).toEqual(false);
     });
 
@@ -203,7 +206,7 @@ describe('GameBoard', function() {
 
     it('should return false when a player hasnt won', function() {
       expect(findBug.board.hasWon()).toEqual(false);
-    })
+    });
 
     var hasNotWonGame = new Game();
     hasNotWonGame.board.gameBoard[0][2] = "X";
