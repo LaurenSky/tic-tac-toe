@@ -93,7 +93,7 @@ const Game = Backbone.Model.extend({
         return false;
       }
     }
-  }
+  },
 });
 
 // DO NOT REMOVE THIS
