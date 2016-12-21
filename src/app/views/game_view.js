@@ -54,6 +54,13 @@ const GameView = Backbone.View.extend({
     console.log(value);
     this.model.playTurn(locationClicked[0], locationClicked[1]);
 
+    if(this.model.gameCounter === true) {
+      $('.x-show').css('display', 'inline');
+      $('.o-show').css('display', 'none');
+    } else {
+      $('.x-show').css('display', 'none');
+      $('.o-show').css('display', 'inline');
+    }
   },
 
   spaceTaken: function() {
@@ -71,7 +78,7 @@ const GameView = Backbone.View.extend({
     alert("There's a winner ");
   },
 
-  stateCatsGame: function () {
+  statecatsGame: function () {
     console.log("in winner");
     alert("It's a Cat's Game :(");
   }

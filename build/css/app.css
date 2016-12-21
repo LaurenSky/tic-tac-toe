@@ -1,17 +1,34 @@
 
 body {
-  /*background-color: blacks;
-  color: white;
-  font-family: 'Nunito Sans', sans-serif;*/
+  background-color: #1B2321;
+  color: black;
+  font-family: 'Shadows Into Light', cursive;
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 500%;
+  text-align: center;
+  color: white;
+  font-family: 'Shadows Into Light', cursive;
+  margin-top: 2%;
+}
+
+h3, h2 {
+  font-family: 'Shadows Into Light', cursive;
+  color: white;
 }
 
 #gameboard-view {
   width: 35%;
   text-align: center;
+}
+
+#player-view {
+  border: 1px solid white;
+  width: 20%;
+  padding: 1%;
+  border-radius: 15px;
+  margin: 1%;
 }
 
 table {
@@ -30,4 +47,28 @@ td {
   width: 11vw;
   height: 11vw;
   padding: 0;
+  border-radius: 15px;
+}
+
+.button {
+  border-radius: 15px;
+  /*font-size: 150%;*/
+  font-size: 25px;
+}
+
+.x-show {
+  display: inline;
+}
+
+.o-show {
+  display: none;
+}
+
+.start-game-button {
+  margin-left: 34%;
+}
+
+#main-area {
+  margin-left: 16%;
+  padding-top: 4%;
 }

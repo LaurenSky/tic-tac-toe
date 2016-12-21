@@ -5,40 +5,47 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="/css/app.css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
   </head>
   <body>
     <script src="/app.bundle.js" charset="utf-8"></script>
     <section id ='game-view'>
       <h1>Tic-Tac-Toe</h1>
 
-      <button type="button" name="start-game-button" class='start-game-button button'>Play A Game!</button>
+      <div class="row">
+          <button type="button" name="start-game-button" class='start-game-button button small-4 columns'>Play A Game!</button>
+      </div>
 
-      <section id ='player-view'>
-        <h3>Current Player: </h3>
-        <h4 id='player1'>X</h4>
-        <h4 id='player2'>O</h4>
-      </section>
+      <div class="row" id='main-area'>
+        <section id ='player-view' class='small-9 columns'>
+          <h3><strong>Current Player: </strong></h3>
+          <h2 id='player1' class='x-show'>X</h2>
+          <h2 id='player2' class='o-show'>O</h2>
+        </section>
 
-      <table id='gameboard-view'>
-        <tr id ='top'>
-          <td id ='00'></td>
-          <td id ='01'></td>
-          <td id ='02'></td>
-        </tr>
+        <table id='gameboard-view'>
+          <tr id ='top'>
+            <td id ='00'></td>
+            <td id ='01'></td>
+            <td id ='02'></td>
+          </tr>
 
-        <tr id='middle'>
-          <td id ='10' ></td>
-          <td id ='11'></td>
-          <td id ='12'></td>
-        </tr>
+          <tr id='middle'>
+            <td id ='10' ></td>
+            <td id ='11'></td>
+            <td id ='12'></td>
+          </tr>
 
-        <tr id='bottom'>
-          <td id ='20'></td>
-          <td id ='21'></td>
-          <td id ='22'></td>
-        </tr>
-      </table>
+          <tr id='bottom'>
+            <td id ='20'></td>
+            <td id ='21'></td>
+            <td id ='22'></td>
+          </tr>
+        </table>
+      </div>
+
+
+
 
     </section>
   </body>
