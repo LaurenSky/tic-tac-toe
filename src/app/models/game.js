@@ -26,7 +26,7 @@ const Game = Backbone.Model.extend({
   },
 
   playTurn: function(row, column) {
-    if(this.winner !== null) {
+    if(this.winner == this.get('player1') || this.winner == this.get('player2') || this.winner === 'catsgame_no_winner') {
       this.trigger('gameover', this);
       console.log("Game is Over " + this.winner.name + " won.");
       return "Game is Over " + this.winner.name + " won.";
@@ -54,6 +54,7 @@ const Game = Backbone.Model.extend({
             this.trigger('winner', this.winner);
             return player.name;
           } else if(this.board.hasWon() === "tie") {
+            this.winner = 'catsgame_no_winner';
             this.trigger('catsgame', this, "cats game");
             console.log("Cat's Game, it's a tie.");
             // return "Cat's Game.";

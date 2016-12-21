@@ -25,7 +25,7 @@ h3, h2 {
 
 #player-view {
   border: 1px solid white;
-  width: 20%;
+  width: 21%;
   padding: 1%;
   border-radius: 15px;
   margin: 1%;
@@ -36,6 +36,7 @@ h3, h2 {
   background-color: transparent;
   border-radius: 15px;
   padding: 4%;
+  margin-top: 4%;
 }
 
 table {
@@ -63,6 +64,10 @@ td {
   /*font-size: 25px;*/
 }
 
+.inline {
+  display: inline;
+}
+
 .x-show {
   display: inline;
 }
@@ -74,6 +79,8 @@ td {
 .start-game-button {
   margin-left: 34%;
 }
+
+
 
 #main-area {
   /*margin-left: 16%;*/
