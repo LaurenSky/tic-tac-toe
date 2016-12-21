@@ -8,7 +8,7 @@ describe('Game', function() {
   it("should create a gameBoard when initialized", function() {
     expect(testGame.board).toBeDefined();
     // expect(testGame.board).toEqual(testBoard.board);
-    expect(testGame.board.get('gameBoard')).toEqual(jasmine.any(Array));
+    expect(testGame.board.gameBoard).toEqual(jasmine.any(Array));
   });
 
   it('should initialize the correct Player for player1', function() {
@@ -37,9 +37,9 @@ describe('Game', function() {
   describe('valid', function() {
     var testGame3 = new Game();
     console.log(">>>>>>");
-    console.log(testGame3.board.get('gameBoard')[0][2]);
-    testGame3.board.set(('gameBoard')[0][2], "X");
-    console.log(testGame3.board.get('gameBoard')[0][2]);
+    console.log(testGame3.board.gameBoard[0][2]);
+    testGame3.board.gameBoard[0][2] = "X";
+    console.log(testGame3.board.gameBoard[0][2]);
 
 
     it('should handle an invalid location entry appropriately', function() {
