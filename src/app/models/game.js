@@ -9,12 +9,12 @@ const Game = Backbone.Model.extend({
     player1: {
       marker: "X",
       turnId: true,
-      name: "player1"
+      name: "player 1"
     },
     player2: {
       marker: "O",
       turnId: false,
-      name: "player2"
+      name: "player 2"
     },
   },
 
@@ -51,7 +51,7 @@ const Game = Backbone.Model.extend({
           if(this.board.hasWon() === true) {
             console.log(player + " you're the Winner!!!");
             this.winner = player;
-            this.trigger('winner', this);
+            this.trigger('winner', this.winner);
             return player.name;
           } else if(this.board.hasWon() === "tie") {
             this.trigger('catsgame', this, "cats game");
