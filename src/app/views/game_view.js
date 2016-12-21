@@ -42,7 +42,17 @@ const GameView = Backbone.View.extend({
 
   startGame: function() {
     console.log("Starting a game");
-
+    location.reload();
+    // var game = new Game();
+    //
+    // var gameview = new GameView({
+    //   el: '#game-view',
+    //   model: game
+    // });
+    //
+    // this.model.board = new GameBoard();
+    //
+    // gameview.render();
   },
 
   playTurn: function(event) {
@@ -78,7 +88,7 @@ const GameView = Backbone.View.extend({
     alert("There's a winner ");
   },
 
-  statecatsGame: function () {
+  stateCatsGame: function () {
     console.log("in winner");
     alert("It's a Cat's Game :(");
   }
