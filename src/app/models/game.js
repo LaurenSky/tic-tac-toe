@@ -95,6 +95,13 @@ const Game = Backbone.Model.extend({
       }
     }
   },
+
+  toJSON: function() {
+    if(_(value.toJSON).isFunction()) {
+    // execute toJSON and overwrite the value in attributes
+    attributes[key] = value.toJSON();
+}
+  }
 });
 
 // DO NOT REMOVE THIS

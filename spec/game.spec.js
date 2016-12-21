@@ -59,7 +59,7 @@ describe('Game', function() {
     var testGame4 = new Game();
 
     it('should add a player1 marker (X) if the space is open', function() {
-      expect(testGame4.board.gameBoard[0][0]).toEqual(null);
+      expect(testGame4.board.gameBoard[0][0]).toEqual(" ");
       expect(testGame4.gameCounter).toEqual(true);
       expect(testGame4.turnCounter).toEqual(0);
 
@@ -81,7 +81,7 @@ describe('Game', function() {
     });
 
     it('should add player2 marker (O) if the space is open', function() {
-      expect(testGame4.board.gameBoard[2][2]).toEqual(null);
+      expect(testGame4.board.gameBoard[2][2]).toEqual(" ");
       expect(testGame4.gameCounter).toEqual(false);
       // expect(testGame4.turnCounter).toEqual(1);
       console.log(">>>>>>>>>>>>>>>>" + testGame4.turnCounter);
