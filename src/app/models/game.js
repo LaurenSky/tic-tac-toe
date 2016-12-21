@@ -23,10 +23,11 @@ const Game = Backbone.Model.extend({
     this.gameCounter = true;
     this.turnCounter = 0;
     this.winner = null;
+    this.outcome = undefined;
   },
 
   playTurn: function(row, column) {
-    if(this.winner == this.get('player1') || this.winner == this.get('player2') || this.winner === 'catsgame_no_winner') {
+    if(this.winner == this.get('player1') || this.winner == this.get('player2') || this.winner === 'draw') {
       this.trigger('gameover', this);
       console.log("Game is Over " + this.winner.name + " won.");
       return "Game is Over " + this.winner.name + " won.";
@@ -51,10 +52,12 @@ const Game = Backbone.Model.extend({
           if(this.board.hasWon() === true) {
             console.log(player + " you're the Winner!!!");
             this.winner = player;
+            this.outcome = player.marker;
             this.trigger('winner', this.winner);
             return player.name;
           } else if(this.board.hasWon() === "tie") {
-            this.winner = 'catsgame_no_winner';
+            this.winner = 'draw';
+            this.outcome = 'draw';
             this.trigger('catsgame', this, "cats game");
             console.log("Cat's Game, it's a tie.");
             // return "Cat's Game.";
@@ -65,11 +68,11 @@ const Game = Backbone.Model.extend({
         console.log("That position is already taken, go Again");
       }
 
-      console.log(this.board.gameBoard[0]);
-      console.log(this.board.gameBoard[1]);
-      console.log(this.board.gameBoard[2]);
-      console.log("who's turn: " + this.gameCounter);
-      console.log("round number: " + this.turnCounter);
+      // console.log(this.board.gameBoard[0]);
+      // console.log(this.board.gameBoard[1]);
+      // console.log(this.board.gameBoard[2]);
+      // console.log("who's turn: " + this.gameCounter);
+      // console.log("round number: " + this.turnCounter);
     }
   },
 
@@ -97,10 +100,23 @@ const Game = Backbone.Model.extend({
   },
 
   toJSON: function() {
-    if(_(value.toJSON).isFunction()) {
-    // execute toJSON and overwrite the value in attributes
-    attributes[key] = value.toJSON();
-}
+    var flattenedBoard = this.board.gameBoard.reduce(function(a, b) {
+      return a.concat(b);
+    }, []);
+
+    var player1 = this.get('player1').name;
+    var player2 = this.get('player2').name;
+    var nowDateTime = new Date();
+
+
+    var apiData = {
+      'board': flattenedBoard,
+      'players': [player1, player2],
+      'outcome': this.outcome,
+      'played_at': nowDateTime
+    };
+
+    console.log(apiData);
   }
 });
 

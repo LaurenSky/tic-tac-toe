@@ -3,6 +3,7 @@ import $ from 'jquery';
 
 import Game from 'app/models/game';
 import GameBoard from 'app/models/game_board';
+import AllGames from 'app/collections/all_games';
 
 import PlayerView from 'app/views/player_view';
 import GameBoardView from 'app/views/gameboard_view';
@@ -41,29 +42,19 @@ const GameView = Backbone.View.extend({
   },
 
   startGame: function() {
-    console.log("Starting a game");
+    // console.log("Starting a game");
     location.reload();
-    // var game = new Game();
-    //
-    // var gameview = new GameView({
-    //   el: '#game-view',
-    //   model: game
-    // });
-    //
-    // this.model.board = new GameBoard();
-    //
-    // gameview.render();
   },
 
   playTurn: function(event) {
-    console.log(event);
-    console.log(event.id);
+    // console.log(event);
+    // console.log(event.id);
     $('#message-box').empty();
     $('#message-box').css('background-color', 'transparent');
     var locationClicked = event.id;
     var value = $(event).html();
 
-    console.log(value);
+    // console.log(value);
     this.model.playTurn(locationClicked[0], locationClicked[1]);
 
     if(this.model.gameCounter === true) {
@@ -96,6 +87,7 @@ const GameView = Backbone.View.extend({
     $('#message-box').append("Winner: " + winner.name);
     $('#message-box').css('background-color', '#88D18A');
 
+    this.model.toJSON();
   },
 
   stateCatsGame: function () {
@@ -103,6 +95,10 @@ const GameView = Backbone.View.extend({
     // alert("It's a Cat's Game :(");
     $('#message-box').append("Cat's Game :(");
     $('#message-box').css('background-color', '#68ABBA');
+
+    var jsonData = this.model.toJSON();
+    this.model.create(jsonData);
+    console.log(this.model);
   }
 
 });
