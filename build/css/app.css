@@ -31,6 +31,13 @@ h3, h2 {
   margin: 1%;
 }
 
+#message-box {
+  color: black;
+  background-color: transparent;
+  border-radius: 15px;
+  padding: 4%;
+}
+
 table {
   table-layout: fixed;
   border-collapse: collapse;
@@ -44,16 +51,16 @@ table tr:nth-of-type(even) {
 td {
   border: 1px solid black;
   font-size: 6vw;
-  width: 11vw;
-  height: 11vw;
+  width: 12vw;
+  height: 12vw;
   padding: 0;
   border-radius: 15px;
 }
 
 .button {
   border-radius: 15px;
-  /*font-size: 150%;*/
-  font-size: 25px;
+  font-size: 150%;
+  /*font-size: 25px;*/
 }
 
 .x-show {
@@ -69,6 +76,7 @@ td {
 }
 
 #main-area {
-  margin-left: 16%;
-  padding-top: 4%;
+  /*margin-left: 16%;*/
+  margin-left: 14%;
+  padding-top: 3%;
 }

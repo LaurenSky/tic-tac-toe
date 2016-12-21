@@ -58,6 +58,8 @@ const GameView = Backbone.View.extend({
   playTurn: function(event) {
     console.log(event);
     console.log(event.id);
+    $('#message-box').empty();
+    $('#message-box').css('background-color', 'transparent');
     var locationClicked = event.id;
     var value = $(event).html();
 
@@ -75,22 +77,32 @@ const GameView = Backbone.View.extend({
 
   spaceTaken: function() {
     console.log("in spaceTaken");
-    alert("That space is taken already, Go Again.");
+    // alert("That space is taken already, Go Again.");
+    $('#message-box').append("Space's Taken, Go Again.");
+    $('#message-box').css('background-color', '#EA6E6E');
   },
 
   gameOver: function() {
     console.log("in gameOver");
-    alert("The Game's already over");
+    // alert("The Game's already over");
+    $('#message-box').append("Game's Over.");
+    $('#message-box').css('background-color', '#EA6E6E');
   },
 
-  stateWinner: function () {
+  stateWinner: function (winner) {
     console.log("in winner");
-    alert("There's a winner ");
+    console.log(winner);
+    // alert("There's a winner ");
+    $('#message-box').append("Winner: " + winner.name);
+    $('#message-box').css('background-color', '#88D18A');
+
   },
 
   stateCatsGame: function () {
     console.log("in winner");
-    alert("It's a Cat's Game :(");
+    // alert("It's a Cat's Game :(");
+    $('#message-box').append("Cat's Game :(");
+    $('#message-box').css('background-color', '#68ABBA');
   }
 
 });
