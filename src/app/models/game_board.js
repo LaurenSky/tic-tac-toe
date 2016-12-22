@@ -16,15 +16,15 @@ const GameBoard = Backbone.Model.extend({
     if ((row0[0] == row0[1]  && row0[1] == row0[2] && row0[2] !== " ") ||
         (row1[0] == row1[1]  && row1[1] == row1[2] && row1[2] !== " ") ||
         (row2[0] == row2[1]  && row2[1] == row2[2] && row2[2] !== " ")) {
-      console.log("Winner in a row");
+      // console.log("Winner in a row");
       return true;
     } else if ((row0[0] == row1[0] && row1[0] == row2[0] && row2[0] !== " ") ||
                 (row0[1] == row1[1] && row1[1] == row2[1] && row2[1] !== " ") ||
                 (row0[2] == row1[2] && row1[2] == row2[2] && row2[2] !== " ")) {
-      console.log("Winner in a column");
+      // console.log("Winner in a column");
       return true;
     } else if ((row0[0] == row1[1] && row1[1] == row2[2] && row2[2] !== " ") || (row0[2] == row1[1] && row1[1] == row2[0] && row2[0] !== " ")) {
-        console.log("Winner in a diagonal");
+        // console.log("Winner in a diagonal");
         return true;
     } else {
       if(this.aTie()){

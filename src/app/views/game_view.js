@@ -32,19 +32,21 @@ const GameView = Backbone.View.extend({
     this.listenTo(this.model, 'gameover', this.gameOver);
     this.listenTo(this.model, 'winner', this.stateWinner);
     this.listenTo(this.model, 'catsgame', this.stateCatsGame);
-
+    // this.listenTo(this.gameList, 'update', this.updateAllGames);
 
     gameBoardView.render();
     playerView.render();
   },
 
   render: function() {
+    this.showAllGames();
 
     return this;
   },
 
   events: {
-    'click .start-game-button': 'startGame'
+    'click .start-game-button': 'startGame',
+    'click .delete-button': 'deleteAGame'
   },
 
   startGame: function() {
@@ -93,12 +95,9 @@ const GameView = Backbone.View.extend({
     $('#message-box').append("Winner: " + winner.name);
     $('#message-box').css('background-color', '#88D18A');
 
-    // console.log("jsondata: ");
-    // console.log(jsonData);
     console.log(this.gameList);
     this.gameList.create(this.model);
-
-    this.updateAllGames();
+    this.showAllGames();
   },
 
   stateCatsGame: function () {
@@ -107,17 +106,37 @@ const GameView = Backbone.View.extend({
     $('#message-box').append("Cat's Game :(");
     $('#message-box').css('background-color', '#68ABBA');
 
-    // console.log("jsondata: ");
-    console.log(jsonData);
     this.gameList.create(this.model);
-
-    this.updateAllGames();
+    $('#all-games').empty();
+    this.showAllGames();
   },
 
-  updateAllGames: function() {
+  showAllGames: function() {
     console.log("in update all games");
-  }
+    console.log(this.gameList);
 
+    var self = this;
+    this.gameList.fetch().done(function() {
+      $.each(self.gameList.models, function(index, game){
+        console.log('game:');
+        console.log(game);
+        var row = $('<tr></tr>');
+        var id = $('<td>' + game.id + '</td>');
+        console.log(game.id);
+        var outcome = $('<td>' + game.outcome + '</td>');
+        var button =  $('<td>' + '<input type="button" value="Delete" class="button delete-button"/>' + '</td>');
+
+        row.append(id, outcome, button);
+        $('#all-games').append(row);
+
+      });
+    });
+  },
+
+  deleteAGame: function(gameId) {
+    console.log("in delete function");
+    // this.gameList.destroy(gameId);
+  }
 });
 
 export default GameView;

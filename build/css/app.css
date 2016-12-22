@@ -6,11 +6,12 @@ body {
 }
 
 h1 {
-  font-size: 500%;
+  font-size: 9vw;
   text-align: center;
   color: white;
   font-family: 'Shadows Into Light', cursive;
   margin-top: 2%;
+  margin-left: 1%;
 }
 
 h3, h2 {
@@ -25,7 +26,7 @@ h3, h2 {
 
 #player-view {
   border: 1px solid white;
-  width: 21%;
+  width: 24vw;
   padding: 1%;
   border-radius: 15px;
   margin: 1%;
@@ -37,6 +38,14 @@ h3, h2 {
   border-radius: 15px;
   padding: 4%;
   margin-top: 4%;
+}
+
+#gameboard-view-box {
+  border: 0 3% 10% 4%;
+}
+
+#all-game-view {
+  padding: 0 3% 3% 9%;
 }
 
 table#gameboard-view {
@@ -60,28 +69,33 @@ table#gameboard-view td.value-cell {
 
 table#all-games th {
   background-color: #1B2321;
-  border-bottom: white, 1px, solid;
-
+  font-size: 110%;
 }
 
 table#all-games td {
   background-color: #1B2321;
+  width: 17vw;
+  padding: 0;
 }
 
 table#all-games {
   color: white;
-  width: 14vw;
-  font-size: 150%;
-  padding: 0 1% 0 1%;
-  border-radius: 15%;
+  width: 17vw;
+  /*font-size: 140%;*/
   text-align: center;
-  border: 1px solid black;
+
 }
 
 .button {
   border-radius: 15px;
   font-size: 150%;
   /*font-size: 25px;*/
+}
+
+.delete-button {
+  border-radius: 15px;
+  font-size: 70%;
+  margin-right: 1%;
 }
 
 .inline {
@@ -97,11 +111,12 @@ table#all-games {
 }
 
 .start-game-button {
-  margin-left: 34%;
+  margin-left: 31%;
+  font-size: 3vw;
 }
 
 #main-area {
   /*margin-left: 16%;*/
-  margin-left: 14%;
+  margin-left: 2%;
   padding-top: 3%;
 }

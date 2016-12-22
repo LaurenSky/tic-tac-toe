@@ -10,54 +10,54 @@
   <body>
     <script src="/app.bundle.js" charset="utf-8"></script>
     <section id ='game-view'>
-      <h1>Tic-Tac-Toe</h1>
+      <div class="row">
+        <h1 class='small-11 columns'>Tic-Tac-Toe</h1>
+      </div>
 
       <div class="row">
           <button type="button" name="start-game-button" class='start-game-button button small-4 columns'>Start Game!</button>
       </div>
 
       <div class="row" id='main-area'>
-        <section id ='player-view' class='small-9 columns'>
+        <section id ='player-view' class='small-6 medium-1 columns'>
           <h3 class='inline'><strong>Current Player: </strong></h3>
           <h2 id='player1' class='x-show inline'>X</h2>
           <h2 id='player2' class='o-show inline'>O</h2>
           <h3 id='message-box'></h3>
         </section>
 
-        <table id='gameboard-view'>
-          <tr id ='top'>
-            <td id ='00' class='value-cell'></td>
-            <td id ='01' class='value-cell'></td>
-            <td id ='02' class='value-cell'></td>
-          </tr>
+        <section id='gameboard-view-box' class='small-6 medium-4 columns'>
+          <table id='gameboard-view'>
+            <tr id ='top'>
+              <td id ='00' class='value-cell'></td>
+              <td id ='01' class='value-cell'></td>
+              <td id ='02' class='value-cell'></td>
+            </tr>
 
-          <tr id='middle'>
-            <td id ='10' class='value-cell'></td>
-            <td id ='11' class='value-cell'></td>
-            <td id ='12' class='value-cell'></td>
-          </tr>
+            <tr id='middle'>
+              <td id ='10' class='value-cell'></td>
+              <td id ='11' class='value-cell'></td>
+              <td id ='12' class='value-cell'></td>
+            </tr>
 
-          <tr id='bottom'>
-            <td id ='20' class='value-cell'></td>
-            <td id ='21' class='value-cell'></td>
-            <td id ='22' class='value-cell'></td>
-          </tr>
-        </table>
+            <tr id='bottom'>
+              <td id ='20' class='value-cell'></td>
+              <td id ='21' class='value-cell'></td>
+              <td id ='22' class='value-cell'></td>
+            </tr>
+          </table>
+        </section>
 
-        <!-- <section id ='all-game-view'>
+        <section id ='all-game-view' class='small-10 medium-4 columns'>
           <h3><strong>Past Games:</strong></h3>
           <table id=all-games>
             <tr>
               <th>Game ID</th>
               <th>Outcome</th>
-            </tr>
-
-            <tr>
-              <td>NANA</td>
-              <td>LALA</td>
+              <th> </th>
             </tr>
           </table>
-        </section> -->
+        </section>
       </div>
 
     </section>

@@ -9,7 +9,7 @@ import GameView from 'app/views/game_view';
 
 
 $(document).ready(function() {
-  var game = new Game();
+  var game = new Game({});
   var allGames = new AllGames();
 
   var gameview = new GameView({
@@ -18,6 +18,7 @@ $(document).ready(function() {
     model: game,
     completedGames: allGames
   });
+
 
   gameview.render();
 });

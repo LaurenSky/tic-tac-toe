@@ -18,18 +18,18 @@ const Game = Backbone.Model.extend({
     },
   },
 
-  initialize: function() {
+  initialize: function(options) {
     this.board = new GameBoard();
     this.gameCounter = true;
     this.turnCounter = 0;
     this.winner = null;
-    this.outcome = undefined;
+    this.outcome = options.outcome;
   },
 
   playTurn: function(row, column) {
     if(this.winner == this.get('player1') || this.winner == this.get('player2') || this.winner === 'draw') {
       this.trigger('gameover', this);
-      console.log("Game is Over " + this.winner.name + " won.");
+      // console.log("Game is Over " + this.winner.name + " won.");
       return "Game is Over " + this.winner.name + " won.";
     } else {
       var player = this.whichPlayer();
@@ -37,7 +37,7 @@ const Game = Backbone.Model.extend({
       if (this.valid(row, column)) {
         this.board.gameBoard[row][column] = player.marker;
 
-        console.log('triggering change event');
+        // console.log('triggering change event');
         this.board.trigger('change', this.board, {});
 
         if (player == this.get('player1')) {
@@ -50,7 +50,7 @@ const Game = Backbone.Model.extend({
 
         if(this.turnCounter >= 5) {
           if(this.board.hasWon() === true) {
-            console.log(player + " you're the Winner!!!");
+            // console.log(player + " you're the Winner!!!");
             this.winner = player;
             this.outcome = player.marker;
             this.trigger('winner', this.winner);
@@ -59,13 +59,13 @@ const Game = Backbone.Model.extend({
             this.winner = 'draw';
             this.outcome = 'draw';
             this.trigger('catsgame', this, "cats game");
-            console.log("Cat's Game, it's a tie.");
+            // console.log("Cat's Game, it's a tie.");
             // return "Cat's Game.";
           }
         }
       } else {
         this.trigger('invalid', this);
-        console.log("That position is already taken, go Again");
+        // console.log("That position is already taken, go Again");
       }
 
       // console.log(this.board.gameBoard[0]);
@@ -86,11 +86,11 @@ const Game = Backbone.Model.extend({
 
   valid: function(row,column) {
     if((row > 2) || (column > 2)) {
-      console.log(row + "," + column + " is not a valid location");
+      // console.log(row + "," + column + " is not a valid location");
       return false;
     } else {
       var locationValue = this.board.gameBoard[row][column];
-      console.log("in valid, location value = " + locationValue);
+      // console.log("in valid, location value = " + locationValue);
       if (locationValue != 'X' && locationValue != 'O') {
         return true;
       } else {
@@ -107,7 +107,6 @@ const Game = Backbone.Model.extend({
     var player1 = this.get('player1').name;
     var player2 = this.get('player2').name;
     var nowDateTime = new Date();
-
 
     var apiData = {
       board: flattenedBoard,
