@@ -10,12 +10,13 @@ import GameView from 'app/views/game_view';
 
 $(document).ready(function() {
   var game = new Game();
-  // var allGames = new AllGames();
+  var allGames = new AllGames();
 
   var gameview = new GameView({
     el: '#game-view',
     // model: allGames
-    model: game
+    model: game,
+    completedGames: allGames
   });
 
   gameview.render();

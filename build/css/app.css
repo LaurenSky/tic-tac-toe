@@ -39,23 +39,43 @@ h3, h2 {
   margin-top: 4%;
 }
 
-table {
+table#gameboard-view {
   table-layout: fixed;
   border-collapse: collapse;
   border-style: hidden;
 }
 
-table tr:nth-of-type(even) {
+table#gameboard-view tr:nth-of-type(even) {
   background-color: transparent !important;
 }
 
-td {
+table#gameboard-view td.value-cell {
   border: 1px solid black;
   font-size: 6vw;
   width: 12vw;
   height: 12vw;
   padding: 0;
   border-radius: 15px;
+}
+
+table#all-games th {
+  background-color: #1B2321;
+  border-bottom: white, 1px, solid;
+
+}
+
+table#all-games td {
+  background-color: #1B2321;
+}
+
+table#all-games {
+  color: white;
+  width: 14vw;
+  font-size: 150%;
+  padding: 0 1% 0 1%;
+  border-radius: 15%;
+  text-align: center;
+  border: 1px solid black;
 }
 
 .button {
@@ -79,8 +99,6 @@ td {
 .start-game-button {
   margin-left: 34%;
 }
-
-
 
 #main-area {
   /*margin-left: 16%;*/

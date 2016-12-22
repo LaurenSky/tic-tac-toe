@@ -64,7 +64,7 @@ const Game = Backbone.Model.extend({
           }
         }
       } else {
-        this.trigger('invalid', this, "Position is already Taken", {});
+        this.trigger('invalid', this);
         console.log("That position is already taken, go Again");
       }
 
@@ -110,13 +110,14 @@ const Game = Backbone.Model.extend({
 
 
     var apiData = {
-      'board': flattenedBoard,
-      'players': [player1, player2],
-      'outcome': this.outcome,
-      'played_at': nowDateTime
+      board: flattenedBoard,
+      players: [player1, player2],
+      outcome: this.outcome,
+      played_at: nowDateTime
     };
 
     console.log(apiData);
+    return apiData;
   }
 });
 

@@ -10,7 +10,7 @@ import GameBoardView from 'app/views/gameboard_view';
 
 const GameView = Backbone.View.extend({
 
-  initialize: function() {
+  initialize: function(options) {
 
     var gameBoardView = new GameBoardView({
       el: '#gameboard-view',
@@ -20,6 +20,12 @@ const GameView = Backbone.View.extend({
     var playerView = new PlayerView({
       el: '#player-view'
     });
+
+    console.log("options");
+    console.log(options);
+    this.gameList = options.completedGames;
+    console.log("all games");
+    console.log(this.gameList);
 
     this.listenTo(gameBoardView, 'selectSpace', this.playTurn);
     this.listenTo(this.model, 'invalid', this.spaceTaken);
@@ -87,7 +93,12 @@ const GameView = Backbone.View.extend({
     $('#message-box').append("Winner: " + winner.name);
     $('#message-box').css('background-color', '#88D18A');
 
-    this.model.toJSON();
+    // console.log("jsondata: ");
+    // console.log(jsonData);
+    console.log(this.gameList);
+    this.gameList.create(this.model);
+
+    this.updateAllGames();
   },
 
   stateCatsGame: function () {
@@ -96,9 +107,15 @@ const GameView = Backbone.View.extend({
     $('#message-box').append("Cat's Game :(");
     $('#message-box').css('background-color', '#68ABBA');
 
-    var jsonData = this.model.toJSON();
-    this.model.create(jsonData);
-    console.log(this.model);
+    // console.log("jsondata: ");
+    console.log(jsonData);
+    this.gameList.create(this.model);
+
+    this.updateAllGames();
+  },
+
+  updateAllGames: function() {
+    console.log("in update all games");
   }
 
 });
