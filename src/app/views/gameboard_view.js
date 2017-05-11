@@ -23,9 +23,9 @@ var GameBoardView = Backbone.View.extend({
   },
 
   render: function() {
-    console.log('in gameBoardView.render');
+    // console.log('in gameBoardView.render');
     var array = this.model.gameBoard;
-    console.log(array);
+    // console.log(array);
 
     $('#00').empty();
     $('#00').append(array[0][0]);
